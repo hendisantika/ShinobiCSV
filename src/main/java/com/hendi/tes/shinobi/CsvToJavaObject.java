@@ -1,15 +1,11 @@
 package com.hendi.tes.shinobi;
 
 import java.io.BufferedReader;
-import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import javax.xml.bind.JAXBContext;
-import javax.xml.bind.JAXBException;
-import javax.xml.bind.Marshaller;
 
 /**
  *
@@ -17,8 +13,8 @@ import javax.xml.bind.Marshaller;
  */
 public class CsvToJavaObject {
 
-    public void convertCsvToJava() {
-        String csvFileToRead = "CsvFiles/csvToRead2.csv";
+    public List<Shinobi> convertCsvToJava() {
+        String csvFileToRead = "src/main/resources/csvToRead2.csv";
         BufferedReader br = null;
         String line = "";
         String splitBy = ",";
@@ -48,20 +44,23 @@ public class CsvToJavaObject {
             }
             // print values stored in carList  
             printShinobiList(shinobiList);
+            
 
-        } catch (FileNotFoundException e) {
-        } catch (IOException e) {
+        } catch (Exception e) {
+            e.printStackTrace();
         } finally {
             if (br != null) {
                 try {
                     br.close();
                 } catch (IOException e) {
+                    e.printStackTrace();
                 }
             }
+            return shinobiList;
         }
 
     }
-    
+
     public void printShinobiList(List<Shinobi> shinobiListToPrint) {
         for (int i = 0; i < shinobiListToPrint.size(); i++) {
             System.out.println("SHINOBIS [ID = " + shinobiListToPrint.get(i).getID()

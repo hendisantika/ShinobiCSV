@@ -1,7 +1,6 @@
 package com.hendi.tes.shinobi;
 
 import java.io.BufferedReader;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 
@@ -15,7 +14,7 @@ public class ReadCsv {
      */
         // TODO code application logic here
     public void readCsv() throws IOException {
-        String csvFileToRead = "CsvFiles/csvToRead2.csv";
+        String csvFileToRead = "src/main/resources/csvToRead2.csv";
         BufferedReader br = null;
         String line = "";
         String splitBy = ",";
@@ -32,13 +31,14 @@ public class ReadCsv {
 
             }
 
-        } catch (FileNotFoundException e) {
-        } catch (IOException e) {
+        } catch (Exception e) {
+            e.printStackTrace();
         } finally {
             if (br != null) {
                 try {
                     br.close();
                 } catch (IOException e) {
+                    e.printStackTrace();
                 }
             }
         }
